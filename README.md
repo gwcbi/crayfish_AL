@@ -1,2 +1,2 @@
 # crayfish_AL
-Alabama Crayfish Project
+Arkansas Crayfish Project
