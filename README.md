@@ -1,2 +1,2 @@
-# crayfish_AL
+# crayfish_AR
 Arkansas Crayfish Project
