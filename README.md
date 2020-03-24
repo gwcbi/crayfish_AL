@@ -1,4 +1,7 @@
 # crayfish_AR
+<br/>
+![](/images/crayfish.jpg)
+
 ## Arkansas Crayfish Project
 Here is an overview of the tasks that need to be completed for the phylogenetic analysis of the crayfish samples from Arkansas.
 This workflow starts with a fasta file of sequences and ends up with appropriate trees.
