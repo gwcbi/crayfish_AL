@@ -8,9 +8,9 @@
 
 3. Go to your `Data` Subfolder and choose `Upload/Enter Data`. Upload the FASTA alignment file. (Note: if you have any `.` characters in your sequence names, you will need to first find and remove them from your input file.)
 
-![img2](/images/img9.png)
+![img9](/images/img9.png)
 
-4. Create a new task with your alignment as input and `jModelTest2 on XSEDE` as the tool. Under `Advanced Parameters` go to `Select Information Criterion` and choose the first three. Click `Save and Run Task`. When your job has finished, you will get an email. 
+4. Go to your `Tasks` subfolder and create a new task with your alignment as input and `jModelTest2 on XSEDE` as the tool. Under `Advanced Parameters` go to `Select Information Criterion` and choose the first three. Click `Save and Run Task`. When your job has finished, you will get an email. 
 
 ![img6](/images/img6.png)
 
