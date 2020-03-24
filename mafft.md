@@ -43,6 +43,12 @@ echo "[---$SN---] ($(date)) $SN COMPLETE."
 > 
 > What do all the lines in the above code block mean? Why are the options important to give to the slurm scheduler?
 
-3. Record all your methods in the manuscript. 
+3. Submitting the script to slurm. <br/>
 
-4. View the alignment in Geneious or online alignment viewers. How does it look? Do we need to adjust the commands or do we need to trim the alignment?
+After creating the above script, we now have to send it off to the scheduler on pegasus. The way you do that is: `sbatch mafft.sh`
+
+To monitor your script: `squeue`
+
+4. Record all your methods in the manuscript. 
+
+5. View the alignment in Geneious or online alignment viewers. How does it look? Do we need to adjust the commands or do we need to trim the alignment?
