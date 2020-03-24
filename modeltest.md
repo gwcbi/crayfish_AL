@@ -23,11 +23,14 @@ and download `infile.phy.phy`. (Note: if you have any `.` characters in your seq
 ![img4](/images/img4.png)
 
 7. Create a new task with `infile.phy.phy` as input and `jModelTest2 on XSEDE` as the tool. Under `Advanced Parameters` go to `Select Information Criterion` and choose the first three. Click `Save and Run Task`. 
+
 ![img6](/images/img6.png)
 
 8. When the task has completed, go to the output and download `STDOUT`. This file contains all the jModelTest output, including the best fit models.
+
 ![img7](/images/img7.png)
 
 9. The best models (based on each critera) are printed at the bottom of the file. Metrics for additional models are also available in the file. 
+
 ![img8](/images/img8.png)
 
