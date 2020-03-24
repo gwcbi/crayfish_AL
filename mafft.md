@@ -39,6 +39,9 @@ echo "[---$SN---] ($(date)) $SN COMPLETE."
 
 ```
 
+The script should look like this on the terminal: <br/>
+![mafft_img1](/images/mafft_img1.png)
+
 > Reflection:
 > 
 > What do all the lines in the above code block mean? Why are the options important to give to the slurm scheduler?
@@ -47,7 +50,11 @@ echo "[---$SN---] ($(date)) $SN COMPLETE."
 
 After creating the above script, we now have to send it off to the scheduler on pegasus. The way you do that is: `sbatch mafft.sh`
 
-To monitor your script: `squeue`
+The output will look like this on the terminal: <br/>
+![mafft_img2](/images/mafft_img2.png)
+
+To monitor your script: `squeue`, which will show you this on the terminal: <br/>
+![mafft_img3](/images/mafft_img3.png)
 
 4. Record all your methods in the manuscript. 
 
