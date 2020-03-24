@@ -1,6 +1,6 @@
 # crayfish_AR
 <br/>
-![](/images/crayfish.jpg)
+![crayfish](/images/crayfish.jpg)
 
 ## Arkansas Crayfish Project
 Here is an overview of the tasks that need to be completed for the phylogenetic analysis of the crayfish samples from Arkansas.
