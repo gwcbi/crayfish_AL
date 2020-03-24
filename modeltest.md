@@ -1,4 +1,4 @@
-## Step 3: Model Selection 
+## Step 3: Model Selection with jModelTest
 
 1. Create an account and log in to the [CIPRES Science Gateway](https://www.phylo.org/portal2/login!input.action).
 
