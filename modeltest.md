@@ -6,7 +6,7 @@
 
 ![img1](/images/img1.png)
 
-3. Go to your `Data` Subfolder and choose `Upload/Enter Data`. Upload a FASTA alignment file. (Note: if you have any `.` characters in your sequence names, you will need to first find and remove them from your input file.)
+3. Go to your `Data` Subfolder and choose `Upload/Enter Data`. Upload the FASTA alignment file. (Note: if you have any `.` characters in your sequence names, you will need to first find and remove them from your input file.)
 
 ![img2](/images/img9.png)
 
