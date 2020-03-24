@@ -12,6 +12,7 @@
 
 You can either create this script on the terminal by doing:
 
+A. On pegasus, navigate to the direcory where you have uploaded the files. This should be `/lustre/groups/cbi/Projects/crayfish_ar`
 A. `touch mafft.sh` - this creates a file <br/>
 B. `nano mafft.sh` - this opens the file to edit within the terminal <br/>
 C. Then you can paste the code below into the file. 
@@ -33,7 +34,7 @@ Alternatively, you can open a next text file in your text editor and save the fi
 #--- Start the timer
 t1=$(date +"%s")
 
-mafft --op 3.00 --thread $(nproc) --localpair --maxiterate 1000 concatenated_crayfish.fasta > aligned_crayfish.fasta
+mafft --op 3.00 --thread $(nproc) --localpair --maxiterate 1000 crayfish16S.fasta > aligned_crayfish16S.fasta
 
 #---Complete job
 t2=$(date +"%s")
