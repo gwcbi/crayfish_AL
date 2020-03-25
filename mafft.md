@@ -12,14 +12,15 @@
 
 You can either create this script on the terminal by doing:
 
-A. On pegasus, navigate to the direcory where you have uploaded the files. This should be `/lustre/groups/cbi/Projects/crayfish_ar`
-A. `touch mafft.sh` - this creates a file <br/>
-B. `nano mafft.sh` - this opens the file to edit within the terminal <br/>
-C. Then you can paste the code below into the file. 
+A.  On pegasus, navigate to the direcory where you have uploaded the files. This should be `/lustre/groups/cbi/Projects/crayfish_ar`   
+B.  `touch mafft.sh` - this creates a file <br/>
+C.  `nano mafft.sh` - this opens the file to edit within the terminal <br/>
+D.  Then you can paste the code below into the file. 
 <br/>
 
-
 Alternatively, you can open a next text file in your text editor and save the file. Then upload to pegasus.
+
+This is the script you will use for your COI alignment. What would you need to change before you run it on 16S?
 
 `mafft.sh`:
 
@@ -34,7 +35,7 @@ Alternatively, you can open a next text file in your text editor and save the fi
 #--- Start the timer
 t1=$(date +"%s")
 
-mafft --op 3.00 --thread $(nproc) --localpair --maxiterate 1000 crayfish16S.fasta > aligned_crayfish16S.fasta
+mafft --op 3.00 --thread $(nproc) --localpair --maxiterate 1000 crayfishCOI.fasta > aligned_crayfishCOI.fasta
 
 #---Complete job
 t2=$(date +"%s")
