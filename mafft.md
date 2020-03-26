@@ -13,8 +13,8 @@
 You can either create this script on the terminal by doing:
 
 A.  On pegasus, navigate to the direcory where you have uploaded the files. This should be `/lustre/groups/cbi/Projects/crayfish_ar`   
-B.  `touch mafft.sh` - this creates a file <br/>
-C.  `nano mafft.sh` - this opens the file to edit within the terminal <br/>
+B.  `touch mafft_COI.sh` - this creates a file <br/>
+C.  `nano mafft_COI.sh` - this opens the file to edit within the terminal <br/>
 D.  Then you can paste the code below into the file. 
 <br/>
 
@@ -22,20 +22,20 @@ Alternatively, you can open a next text file in your text editor and save the fi
 
 This is the script you will use for your COI alignment. What would you need to change before you run it on 16S?
 
-`mafft.sh`:
+`mafft_COI.sh`:
 
 ```bash
 #!/bin/bash
 #SBATCH -N 1
 #SBATCH -t 2:00:00
 #SBATCH -p tiny,short,defq
-#SBATCH -o mafft.out
-#SBATCH -e mafft.err
+#SBATCH -o mafft_COI.out
+#SBATCH -e mafft_COI.err
 
 #--- Start the timer
 t1=$(date +"%s")
 
-mafft --op 3.00 --thread $(nproc) --localpair --maxiterate 1000 crayfishCOI.fasta > aligned_crayfishCOI.fasta
+mafft --thread $(nproc) --localpair --maxiterate 1000 crayfishCOI.fasta > aligned_crayfishCOI.fasta
 
 #---Complete job
 t2=$(date +"%s")
@@ -72,3 +72,33 @@ To monitor your script: `squeue`, which will show you this on the terminal: <br/
 
 
 5. View the alignment in Geneious or online alignment viewers. How does it look? Do we need to adjust the commands or do we need to trim the alignment?
+<br/>
+
+### Aligning Concatenated Dataset
+
+After COI and 16S alignments are concatenated, you will then re-align using MAFFT.
+<br/>
+
+`mafft_concat.sh`:
+
+```bash
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH -t 2:00:00
+#SBATCH -p tiny,short,defq
+#SBATCH -o mafft_concat.out
+#SBATCH -e mafft_concat.err
+
+#--- Start the timer
+t1=$(date +"%s")
+
+mafft --op 3.00 --thread $(nproc) --localpair --maxiterate 1000 crayfish_concat.fasta > aligned_crayfish_concat.fasta
+
+#---Complete job
+t2=$(date +"%s")
+diff=$(($t2-$t1))
+echo "[---$SN---] ($(date)) $(($diff / 60)) minutes and $(($diff % 60)) seconds elapsed."
+echo "[---$SN---] ($(date)) $SN COMPLETE."
+
+```
+<br/>
