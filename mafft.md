@@ -32,6 +32,7 @@ This is the script you will use for your COI alignment. What would you need to c
 #SBATCH -o mafft_COI.out
 #SBATCH -e mafft_COI.err
 
+module load mafft
 #--- Start the timer
 t1=$(date +"%s")
 
