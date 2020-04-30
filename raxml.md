@@ -39,12 +39,13 @@ You can also add the `module use` command to your bashrc in your home directory 
 #SBATCH -o raxml.out
 #SBATCH -e raxml.err
 
+module load miniconda3/4.7.10
 conda activate raxmlng
 
 #--- Start the timer
 t1=$(date +"%s")
 
-raxml-ng --all --msa crayfish_concat.fasta --model TIM2+I+G --tree pars{100},rand{100} --bs-trees 1000 --outgroups 125_Astacoides_crosnieri,126_Cherax_cairnsensis,127_Samastacus_sp -threads 1
+raxml-ng --all --msa crayfish_concat.fasta --model TIM2+I+G --tree pars{100},rand{100} --bs-trees 1000 --outgroup 125_Astacoides_crosnieri,126_Cherax_cairnsensis,127_Samastacus_sp -threads 1
 
 #---Complete job
 t2=$(date +"%s")
