@@ -11,7 +11,7 @@ We will be using [RAxML-NG](https://github.com/amkozlov/raxml-ng), which is a su
 
 1. You have to create the raxml-ng environment using Bioconda before being able to activate it and use the program. Make sure you load the miniconda module and the Bioconda channel configured:
 
-`module use /GWSPH/groups/cbi/Apps/_modulefiles
+```module use /GWSPH/groups/cbi/Apps/_modulefiles
 
 module load miniconda3/4.7.10
 
@@ -19,7 +19,9 @@ conda config --add channels defaults
 conda config --add channels bioconda
 conda config --add channels conda-forge
 
-conda create -n raxmlng raxml-ng`
+conda create -n raxmlng raxml-ng
+
+```
 
 You can also add the `module use` command to your bashrc in your home directory to save time every time you connect to Pegasus.
 
