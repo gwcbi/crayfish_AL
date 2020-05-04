@@ -25,7 +25,15 @@ conda create -n raxmlng raxml-ng
 
 You can also add the `module use` command to your bashrc in your home directory to save time every time you connect to Pegasus.
 
-2. Navigate to the correct directory where you have your aligned and trimmed fasta files. In the current example, we will be running raxml-ng on the concatenated COI and 16S dataset (`crayfish_concat.fasta`), which contains all GenBank samples, all KC unknown samples (that contain both COI and 16S) and three outgroups - 125_Astacoides_crosnieri, 126_Cherax_cairnsensis, 127_Samastacus_sp(SH crayfish-to be confirmed later)
+2. Navigate to the correct directory where you have your aligned and trimmed fasta files. In the current example, we will be running raxml-ng on the concatenated COI and 16S dataset (`crayfish_concat.fasta`), which contains all GenBank samples, all KC unknown samples (that contain both COI and 16S) and three outgroups - 125_Astacoides_crosnieri, 126_Cherax_cairnsensis, 127_Samastacus_sp(SH crayfish-to be confirmed later). You also need to create a partitioned file that you can specify in your `--model` argument. It should look similar to this:
+
+`crayfish.part`
+```
+TRNEF+I+G, COIp1=1-597/3
+HKY+I+G, COIp2=2-597/3                                                                                         
+GTR+G, COIp3=3-597/3                                                                                         
+TVM+I+G, 16S=598-1031
+```
 
 3. Create a slurm script, which activates the raxml-ng environment and uses the program, titled `raxml.sh`. This slurm script will be submitted on Pegasus.
 
@@ -45,7 +53,7 @@ conda activate raxmlng
 #--- Start the timer
 t1=$(date +"%s")
 
-raxml-ng --all --msa crayfish_concat.fasta --model TIM2+I+G --tree pars{100},rand{100} --bs-trees 1000 --outgroup 125_Astacoides_crosnieri,126_Cherax_cairnsensis,127_Samastacus_sp --threads 1
+raxml-ng --msa crayfish_concat_outgroups.fasta --model crayfish.part --tree pars{100},rand{100} --bs-trees 1000 --outgroup 125_Astacoides_crosnieri,126_Cherax_cairnsensis,127_Samastacus_sp --threads 2
 
 #---Complete job
 t2=$(date +"%s")
