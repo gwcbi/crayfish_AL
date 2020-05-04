@@ -64,3 +64,5 @@ search = all;
 >Reflection: How did the GTR model (often used as a default on RAxML) perform relative to the best model? Did all three criteria choose the same model?
 
 >Reflection: What do the G and I terms in some of the model names mean? Why is this important?
+
+We are now ready to estimate trees using [RAxML-NG](raxml.md)
