@@ -1,4 +1,4 @@
-## Step 3: Aligning data using MAFFT 
+## Step 2: Aligning data using MAFFT 
 
 1. Read and review MAFFT [documentation](https://mafft.cbrc.jp/alignment/software/manual/manual.html). We will be using the command line to execute MAFFT and will need to use a handful of the command options from the documentation.
 
