@@ -1,0 +1,257 @@
+##########################################################################################
+##########################################################################################
+######### in bash #########
+# in the terminal - bash script
+# assumes you are in directory with all your fasta files and have a directory named 16S/
+
+# removed the two *_Orconectes_ronaldi_1.txt~ becuase it had a tilda
+#rm *~*
+
+# add in file from uzma (KC163451.1_Fallicambarus_fodiens_3.txt)
+
+# replacing FASTA endings (only 6) with .txt
+#for f in *.fasta; do mv $f ${f%.fasta}.txt; done
+
+# Get a list of all unqiue genus_species_# filenames and put into a list
+ls *.txt | cut -d'_' -f2-4 | sort | uniq > uniq_genspecnum.txt
+
+# loop through file name list, search for the accession that has '16s' in the name and move the file into the 16S directory
+for f in $(cat uniq_genspecnum.txt); do
+   nf=$(grep "16S" *_${f} | cut -d':' -f1)
+   echo $nf >> 16s_file_list.txt
+   echo $f	$nf
+   mv $nf 16S/
+done
+
+
+# notes:
+# Fallicambarus_fodiens_4.txt and Orconectes_ronaldi_1.txt don't have 16S matches.
+# 1. KF828194.1_Orconectes_ronaldi_1.txt and KF828204.1_Fallicambarus_fodiens_4.txt had to be moved manually to 16S/ because it didn’t contain 16S in the name.
+
+
+##########################################################################################
+##########################################################################################
+######### in python #########
+
+# you can make all the paths neater with os and os.path. But i'll leave that for you
+# this script is also run interactively i.e., type python into terminal and copy and paste code
+
+
+from Bio import SeqIO
+from glob import glob
+
+import os
+import os.path
+
+current_path = os.getcwd()
+renamed = os.path.join(current_path, 'renamed')
+os.makedirs(renamed, exist_ok=True)
+
+current_path = os.getcwd()
+renamedC = os.path.join(current_path, 'renamedC')
+os.makedirs(renamedC, exist_ok=True)
+
+# get list of 16S files
+files = glob('16S/*.txt')
+files
+
+# number of files
+numfiles=len(files)
+numfiles
+
+# making sure we have 99 sample pairs
+assert numfiles == 99
+
+dict = {}
+# key is gen_sp_# = ##, because every gen_sp_# is uniq
+fafiles = []
+
+# loop through the files one by one and give each a number 
+for i,val in enumerate(files):
+    # gets the file name without the accession number
+    cray = "_".join(val.split('_')[1:4]).split(".")[0]
+    # adds file name to dict with uniq number
+    dict[cray] = '%02d' % i
+    # gets just genus and species
+    gensp = "_".join(val.split('_')[1:3])
+    # gets just accession number
+    acc = val.split('_')[0].split("/")[1]
+    #acc = val.split('_')[0]
+    # makes new file name with unique number and genus and species
+    nf = "%s_%s.fasta" % (dict[cray], gensp)
+    # loop through the accesions 
+    for record in SeqIO.parse(val,'fasta'):
+        fafiles.append(record)
+        # checking to make sure there is only one record in the fasta file
+        assert len(fafiles)==1
+        # writing the sequence with a new name to a new file
+        # change path here 
+        with open(os.path.join('renamed', nf),"w") as outh:
+            print(">%s_%s %s" % (dict[cray], gensp, record.description), file=outh)
+            print(record.seq, file=outh)
+            print("%s has been created for 16S" % str(os.path.join('renamed', nf)))
+    fafiles=[]
+
+# making sure we have 99 sample pairs
+assert len(dict) == 99
+
+# remember we are within the 16S dir, so have to go up one dir to get the co1 files
+co1files = glob("COI/*.1*.txt")
+
+# making sure we have 99 sample pairs
+assert len(co1files) == 99
+
+for val in co1files:
+	cray = "_".join(val.split('_')[1:4]).split(".")[0]
+	gensp = "_".join(val.split('_')[1:3])
+	acc = val.split('_')[0].split("/")[1]
+	nf = "%s_%s.fasta" % (dict[cray], gensp)
+	for record in SeqIO.parse(val,'fasta'):
+		fafiles.append(record)
+		# checking to make sure there is only one record in the fasta file
+		assert len(fafiles)==1
+		# writing the sequence with a new name to a new file
+		# change path here 
+		with open(os.path.join('renamedC', nf),"w") as outh:
+			print(">%s_%s %s" % (dict[cray], gensp, record.description), file=outh)
+			print(record.seq, file=outh)
+			print("%s has been created for CO1" % str(os.path.join('renamedC', nf)))
+    fafiles=[]
+
+
+
+##########################################################################################
+##########################################################################################
+############ KC numbers ######
+
+#Assumes you are in the unknown_seqs directory
+#There are 26 matched KC 16S/COI pairs but 30 files in each folder
+#find which files don't have a matching pair and move them to an unmatched directory - done manually
+
+#in bash
+mkdir COI
+mkdir 16S
+mv *16S* 16S/
+mv *COI COI/
+ls */*.fasta | cut -d'_' -f1 | cut -d'/' -f2 | sort | uniq > uniq_kc.txt
+for f in $(cat uniq_kc.txt); do echo */*$f*; done
+
+#KC9021_COI.fasta, KC9022_COI.fasta, KC9023_16S.fasta, KC9023redo_16S.fasta, KC9030_COI.fasta, KC9031_COI.fasta, KC9045_16S.fasta, KC9047_16S.fasta
+#Move these files manually to directory titles "unmatched"
+
+
+
+#in python
+#Rename 16S files starting at 99_KC##.fasta
+from Bio import SeqIO
+from glob import glob
+
+import os
+import os.path
+
+current_path = os.getcwd()
+renamed = os.path.join(current_path, '16S/renamed')
+os.makedirs(renamed, exist_ok=True)
+
+current_path = os.getcwd()
+renamedC = os.path.join(current_path, 'COI/renamedC')
+os.makedirs(renamedC, exist_ok=True)
+
+# get list of 16S files
+files = glob('16S/*.fasta')
+files
+
+# number of files
+numfiles=len(files)
+numfiles
+
+# making sure we have 26 sample pairs
+assert numfiles == 26
+
+dict = {}
+# key is KC#
+fafiles = []
+
+count=99
+
+# loop through the files one by one and give each a number starting @99 - last GenBank # is 98
+for i,val in enumerate(files):
+    # gets just accession number
+    acc = val.split('_')[0].split("/")[1]
+    # adds file name to dict with uniq number starting @99
+    dict[acc] = count+i
+	# makes new file name with unique number and KC#
+	nf = "%s_%s.fasta" % (dict[acc], acc)
+	# loop through the accesions 
+	for record in SeqIO.parse(val,'fasta'):
+		fafiles.append(record)
+		# checking to make sure there is only one record in the fasta file
+		assert len(fafiles)==1
+		# writing the sequence with a new name to a new file
+        with open(os.path.join(renamed, nf),"w") as outh:
+            print(">%s_%s %s" % (dict[acc], acc, record.description), file=outh)
+            print(record.seq, file=outh)
+            print("%s has been created for 16S" % str(os.path.join('renamed', nf)))
+    fafiles=[]
+
+
+
+co1files = glob("COI/*.fasta")
+
+# making sure we have 26 sample pairs
+assert len(co1files) == 26
+
+for val in co1files:
+	acc = val.split('_')[0].split("/")[1]
+	nf = "%s_%s.fasta" % (dict[acc], acc)
+	for record in SeqIO.parse(val,'fasta'):
+		fafiles.append(record)
+		# checking to make sure there is only one record in the fasta file
+		assert len(fafiles)==1
+		# writing the sequence with a new name to a new file
+		# change path here 
+		with open(os.path.join(renamedC, nf),"w") as outh:
+			print(">%s_%s %s" % (dict[acc], acc, record.description), file=outh)
+			print(record.seq, file=outh)
+			print("%s has been created for CO1" % str(os.path.join('renamedC', nf)))
+    fafiles=[]
+
+
+
+# for unmatched 
+
+current_path = os.getcwd()
+renamedU = os.path.join(current_path, 'unmatched/renamedU')
+os.makedirs(renamedU, exist_ok=True)
+
+ufiles = glob('unmatched/*.fasta')
+ufiles
+
+udict = {}
+# key is KC#_gene region - need to keep region to be able to distinguish in file name
+fafiles = []
+
+count=125
+
+# loop through the files one by one and give each a number starting @125
+for i,val in enumerate(ufiles):
+    # gets just accession number
+    acc = val.split('.')[0].split("/")[1]
+    
+    # adds file name to dict with uniq number starting @125 - last Unknown Seq# is 124
+    udict[acc] = count+i
+    
+	# makes new file name with unique number, KC##, and region (16S/COI)
+	nf = "%s_%s.fasta" % (udict[acc], acc)
+	# loop through the accesions 
+	for record in SeqIO.parse(val,'fasta'):
+		fafiles.append(record)
+		# checking to make sure there is only one record in the fasta file
+		assert len(fafiles)==1
+		# writing the sequence with a new name to a new file
+        with open(os.path.join(renamedU, nf),"w") as outh:
+            print(">%s_%s %s" % (udict[acc], acc, record.description), file=outh)
+            print(record.seq, file=outh)
+            print("%s has been created for unmatched" % str(os.path.join('renamedU', nf)))
+    fafiles=[]
+
