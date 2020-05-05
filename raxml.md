@@ -2,16 +2,17 @@
 
 One of the most popular tools for doing a Maximum Likelihood analysis is RAxML (Randomized Axelerated Maximum Likelihood).
 
-We will be using [RAxML-NG](https://github.com/amkozlov/raxml-ng), which is a successor to RAxML. This version is faster and offers more user options than previous versions. SPecifically, it can account for more models of evolution than just GTR
+We will be using [RAxML-NG](https://github.com/amkozlov/raxml-ng), which is a successor to RAxML. This version is faster and offers more user options than previous versions. Specifically, it can account for more models of evolution than just GTR
 
 >Refelection
 
 >Why do we need other models?
 <br/>
 
-1. You have to create the raxml-ng environment using Bioconda before being able to activate it and use the program. Make sure you load the miniconda module and the Bioconda channel configured:
+1. You have to create the raxml-ng environment using Bioconda before being able to activate it and use the program. Make sure you load the miniconda module and have the Bioconda channel configured:
 
-```module use /GWSPH/groups/cbi/Apps/_modulefiles
+```
+module use /GWSPH/groups/cbi/Apps/_modulefiles
 
 module load miniconda3/4.7.10
 
