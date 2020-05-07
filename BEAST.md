@@ -19,6 +19,8 @@ You can view your alignment by selecting `View Partition`.
 
 <br>![img3](/images/beast3.png)<br>
 
+Based on our PartitionFinder2 results, we may have to substitute our models with base models available. Check out this [blog post](Setting DNA substitution models in BEAST - blog.pdf) to choose the appropriate models.
+
 4. On the `Trees` tab, select `Speciation: Yule Process` as the Tree Prior.
 
 <br>![img4](/images/beast4.png)<br>
