@@ -54,7 +54,7 @@ conda activate raxmlng
 #--- Start the timer
 t1=$(date +"%s")
 
-raxml-ng --msa crayfish_concat_outgroups.fasta --model crayfish.part --tree pars{100},rand{100} --bs-trees 1000 --outgroup 125_Astacoides_crosnieri,126_Cherax_cairnsensis,127_Samastacus_sp --threads 2
+raxml-ng --all --msa crayfish_concat_outgroups.fasta --model crayfish.part --tree pars{100},rand{100} --bs-trees 1000 --outgroup 125_Astacoides_crosnieri,126_Cherax_cairnsensis,127_Samastacus_sp --threads 2
 
 #---Complete job
 t2=$(date +"%s")
