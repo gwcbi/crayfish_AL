@@ -16,11 +16,11 @@ Note: BEAST has fantastic online documentation. For more details on the software
 
 4. Open BEAUti and select `Import Data` from the `File` menu. Select your alignment nexus file.
 
-<br>![img1](/images/beast1.png) <br>
+<br>![img15](/images/beast15.png) <br>
 
 You can view your alignment by selecting `View Partition`.
 
-<br>![img15](/images/beast15.png)<br>
+<br>![img16](/images/beast16.png)<br>
 
 5. Go to the `Sites` tab and select your substitution models.
 
