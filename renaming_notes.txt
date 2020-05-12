@@ -132,7 +132,7 @@ for val in co1files:
 mkdir COI
 mkdir 16S
 mv *16S* 16S/
-mv *COI COI/
+mv *COI* COI/
 ls */*.fasta | cut -d'_' -f1 | cut -d'/' -f2 | sort | uniq > uniq_kc.txt
 for f in $(cat uniq_kc.txt); do echo */*$f*; done
 
