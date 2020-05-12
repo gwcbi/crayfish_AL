@@ -7,7 +7,14 @@ Note: BEAST has fantastic online documentation. For more details on the software
 #### Step 1: Make the BEAST XML file using BEAUTI.
 
 1. Install BEAST. Instructions are here for [Mac](https://beast.community/install_on_mac) and [Windows](https://beast.community/install_on_windows).
-2. Open BEAUti and select `Import Data` from the `File` menu. Select your alignment FASTA file.
+
+2. Convert your fasta alignment to a nexus output using Geneious (export -> nexus format)
+
+3. Edit your nexus file to reflect your partitions
+
+<br>![img12](/images/beast12.png) <br>
+
+4. Open BEAUti and select `Import Data` from the `File` menu. Select your alignment nexus file.
 
 <br>![img1](/images/beast1.png) <br>
 
@@ -15,17 +22,25 @@ You can view your alignment by selecting `View Partition`.
 
 <br>![img2](/images/beast2.png)<br>
 
-3. Go to the `Sites` tab and select your substitution model.
+5. Go to the `Sites` tab and select your substitution models.
 
 <br>![img3](/images/beast3.png)<br>
 
 Based on our PartitionFinder2 results, we may have to substitute our models with base models available. Check out this [blog post](BEAST_DNA_sub_models.pdf) by Justin C. Bagley to choose the appropriate models.
 
-4. On the `Trees` tab, select `Speciation: Yule Process` as the Tree Prior.
+6. As an example: If one model is TVM, you can use GTR and just uncheck the AG rate operator:
+
+<br>![img13](/images/beast13.png)<br>
+
+7. We'll use a linked, uncorrelated relaxed clock model.
+
+<br>![img14](/images/beast14.png)<br>
+
+8. On the `Trees` tab, select `Speciation: Yule Process` as the Tree Prior.
 
 <br>![img4](/images/beast4.png)<br>
 
-5. Next, click `Generate BEAST File...` and save your file with a `.xml` extension.
+9. Next, click `Generate BEAST File...` and save your file with a `.xml` extension.
 
 <br>![img5](/images/beast5.png)<br>
 
