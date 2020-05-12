@@ -20,7 +20,7 @@ Note: BEAST has fantastic online documentation. For more details on the software
 
 You can view your alignment by selecting `View Partition`.
 
-<br>![img2](/images/beast2.png)<br>
+<br>![img15](/images/beast15.png)<br>
 
 5. Go to the `Sites` tab and select your substitution models.
 
