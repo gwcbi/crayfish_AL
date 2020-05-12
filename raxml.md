@@ -48,6 +48,7 @@ TVM+I+G, 16S=598-1031
 #SBATCH -o raxml.out
 #SBATCH -e raxml.err
 
+module use /GWSPH/groups/cbi/Apps/_modulefiles
 module load miniconda3/4.7.10
 conda activate raxmlng
 
