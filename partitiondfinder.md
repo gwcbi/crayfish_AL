@@ -1,6 +1,6 @@
 ## Step 3: Partition the Concatenated Dataset
 
-1. Read and review PartitionFinder2 [documentation](hhttp://www.robertlanfear.com/partitionfinder/assets/Manual_v2.1.x.pdf). 
+1. Read and review PartitionFinder2 [documentation](http://www.robertlanfear.com/partitionfinder/assets/Manual_v2.1.x.pdf). 
 PartitionFinder2 is a program for selecting best-fit partitioning schemes and models of evolution for nucleotide, amino acid, and morphology alignments. 
 
 > Reflection:
