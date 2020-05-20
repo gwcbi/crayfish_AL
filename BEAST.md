@@ -61,8 +61,16 @@ Based on our PartitionFinder2 results, we may have to substitute our models with
 #### Step 2.5 Analyze the results using tracer
 1. Download tracer from [this website](https://github.com/beast-dev/tracer/releases/tag/v1.7.1) and open the program
 2. Drag and drop the `.log` file into the tracer window. There are a lot of useful things to see here, but two main important things--your ESS and the raw trace.
-3. ESS (effective sample size) values are generally considered to be "good" if they are over 200. If most of your ESS values are good, you can continue. If you have many ESS values lower than 200, we have not sufficiently explored the posterior space. Go back and edit your BEaUTi file so that MCMC chain length parameter is 10'000'000 and change the tracelog frequency to 1'000, and run BEAST again
+3. ESS (effective sample size) values are generally considered to be "good" if they are over 200. If most of your ESS values are good, you can continue. If you have many ESS values lower than 200, we have not sufficiently explored the posterior space. Go back and edit your BEaUTi file so that MCMC chain length parameter is 100'000'000 and change the tracelog frequency to 10'000, and run BEAST again
+
+<br>![tracer_bad](/images/tracer_bad.png)<br>
+
+Here is an example of a run that needs to go for a longer time. Notice all the low ESS values, and the trace that is very sporadic. 
 4. Look at the trace for the different parameters. If it looks like a hairy caterpillar, you have sufficiently explored the posterior space and can continue. This step can also help you to know if you need to do more than a 10% burn in.
+
+<br>![tracer_good](/images/tracer_good.png)<br>
+
+Here is an example of a "hairy caterpillar" trace with some higher ESS values.
 
 #### Step 3: Build the tree in TreeAnnotator.
 BEAST generates many trees during analysis. We will now combine these trees into one "consensus" tree, called a Maximum Clade Credibility (MCC) tree.
