@@ -24,7 +24,7 @@ You can view your alignment by selecting `View Partition`.
 
 5. Link your tree and clock model for all 4 partitions by selecting the checkbox on the right, and then clicking "Link Clock Models" and "Link trees". Rename each of row in the clock model column "Clock", and each row in the tree colum "tree".
 
-<br>[img17](/images/beast17.png)<br>
+<br>![img17](/images/beast17.png)<br>
 
 6. Go to the `Sites` tab and select your substitution models.
 
