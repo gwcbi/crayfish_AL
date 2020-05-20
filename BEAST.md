@@ -2,7 +2,7 @@
 
 > Reflection: How is this different from the maximum-likelihood tree? Why are we estimating both?
 
-Note: BEAST has fantastic online documentation. For more details on the software and additional tutorials, reference their docs [here](https://beast.community/index.html). Here, we will be running BEAST using the [CIPRES Science Gateway](http://www.phylo.org), but we need to download the BEAST package to complate data preparation steps.
+Note: BEAST has fantastic online documentation. For more details on the software and additional tutorials, reference their docs [here](https://beast.community/index.html). Here, we will be running BEAST using the [CIPRES Science Gateway](http://www.phylo.org), but we need to download the BEAST package to complate data preparation steps. [Taming the beast](https://github.com/Taming-the-BEAST/Introduction-to-BEAST2) is also a great resource for understanding what is going on here.
 
 #### Step 1: Make the BEAST XML file using BEAUTI.
 
@@ -22,25 +22,29 @@ You can view your alignment by selecting `View Partition`.
 
 <br>![img16](/images/beast16.png)<br>
 
-5. Go to the `Sites` tab and select your substitution models.
+5. Link your tree and clock model for all 4 partitions by selecting the checkbox on the right, and then clicking "Link Clock Models" and "Link trees". Rename each of row in the clock model column "Clock", and each row in the tree colum "tree".
+
+<br>[img17](/images/beast17.png)<br>
+
+6. Go to the `Sites` tab and select your substitution models.
 
 <br>![img3](/images/beast3.png)<br>
 
 Based on our PartitionFinder2 results, we may have to substitute our models with base models available. Check out this [blog post](BEAST_DNA_sub_models.pdf) by Justin C. Bagley to choose the appropriate models.
 
-6. As an example: If one model is TVM, you can use GTR and just uncheck the AG rate operator:
+7. As an example: If one model is TVM, you can use GTR and just uncheck the AG rate operator:
 
 <br>![img13](/images/beast13.png)<br>
 
-7. We'll use a linked, uncorrelated relaxed clock model.
+8. We'll use a linked, uncorrelated relaxed clock model.
 
 <br>![img14](/images/beast14.png)<br>
 
-8. On the `Trees` tab, select `Speciation: Yule Process` as the Tree Prior.
+9. On the `Trees` tab, select `Speciation: Yule Process` as the Tree Prior.
 
 <br>![img4](/images/beast4.png)<br>
 
-9. Next, click `Generate BEAST File...` and save your file with a `.xml` extension.
+10. Next, click `Generate BEAST File...` and save your file with a `.xml` extension.
 
 <br>![img5](/images/beast5.png)<br>
 
@@ -52,7 +56,13 @@ Based on our PartitionFinder2 results, we may have to substitute our models with
 
 <br>![img6](/images/beast6.png)<br>
 
-3. When your BEAST run finishes, go to Output and download the file ending in `.trees`.
+3. When your BEAST run finishes, go to Output and download the file ending in `.trees`, as well as the file ending in `.log`.
+
+#### Step 2.5 Analyze the results using tracer
+1. Download tracer from [this website](https://github.com/beast-dev/tracer/releases/tag/v1.7.1) and open the program
+2. Drag and drop the `.log` file into the tracer window. There are a lot of useful things to see here, but two main important things--your ESS and the raw trace.
+3. ESS (effective sample size) values are generally considered to be "good" if they are over 200. If most of your ESS values are good, you can continue. If you have many ESS values lower than 200, we have not sufficiently explored the posterior space. Go back and edit your BEaUTi file so that MCMC chain length parameter is 10'000'000 and change the tracelog frequency to 1'000, and run BEAST again
+4. Look at the trace for the different parameters. If it looks like a hairy caterpillar, you have sufficiently explored the posterior space and can continue. This step can also help you to know if you need to do more than a 10% burn in.
 
 #### Step 3: Build the tree in TreeAnnotator.
 BEAST generates many trees during analysis. We will now combine these trees into one "consensus" tree, called a Maximum Clade Credibility (MCC) tree.
