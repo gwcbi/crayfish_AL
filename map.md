@@ -58,7 +58,7 @@ ggsave("USA_plot.pdf",scale = 1, width = 12, height = 8, units = c("in"), dpi = 
 
 > Reflection:
 > 
-What do theme_void, geom_polygon, and geom_rect create in the map? What are the variables we're plotting?
+>What do theme_void, geom_polygon, and geom_rect create in the map? What are the variables we're plotting?
 <br/>
 
 Now that we have a region of interest, we will use ggmap to highlight our area and plot our sampling sites
@@ -86,5 +86,5 @@ ggsave("ark_plot.pdf", scale = 0.75, width = 8,height = 7, units = c("in"), dpi 
 
 > Reflection:
 > 
-We manually annotated the state labels, but what are some commands we could change to have the map automatically contain the state labels?
+>We manually annotated the state labels, but what are some commands we could change to have the map automatically contain the state labels?
 <br/>
