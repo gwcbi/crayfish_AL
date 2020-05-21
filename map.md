@@ -92,3 +92,6 @@ ggsave("ark_plot.pdf", scale = 0.75, width = 8,height = 7, units = c("in"), dpi 
 > 
 >We manually annotated the state labels, but what are some commands we could change to have the map automatically contain the state labels?
 <br/>
+
+**Troubleshooting:**
+* If your Arkansas map is rendering as a green, topological map instead of the black/white theme, try reinstalling ggmap, restarting your R session, and then loading all the packages again.
