@@ -6,6 +6,10 @@ You can find the manual for ggmap [here](https://cran.r-project.org/web/packages
 We're going to start with a map of the United States. Begin by installing the packages you need and loading the libraries:
 
 ```
+# install and load devtools
+install.packages("devtools")
+library(devtools)
+
 install.packages("ggplot2")
 install.packages(c("maps", "mapdata"))
 devtools::install_github("dkahle/ggmap")
