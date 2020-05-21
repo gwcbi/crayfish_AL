@@ -17,4 +17,6 @@ This workflow starts with a fasta file of sequences and ends up with appropriate
 7) Estimate a tree using Bayesian analysis using [BEAST](BEAST.md)
 8) Evaluate your tree
 
+SUPPLEMENTAL - Create your sampling map in [R](map.md)
+
 GREAT JOB!
